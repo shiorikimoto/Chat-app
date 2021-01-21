@@ -1,5 +1,5 @@
 import firebase from 'firebase'//カリキュラムの通りのコードだと古いらしい
-import 'firebase/auth'
+import 'firebase/auth'//'../firebase.js'から変更
 import 'firebase/firestore'
 
 

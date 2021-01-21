@@ -14,10 +14,8 @@ const Signup = ({ history }) => {
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
-        // デフォルトの動きを抑制 
-        e.preventDefault();
-        // firebaseの機能を使用したサインアップ機能
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        e.preventDefault()// デフォルトの動きを抑制 
+        firebase.auth().createUserWithEmailAndPassword(email, password)// firebaseのサインアップ機能
             .then(() => {
                 // pushメソッドを使用することで、引数に指定したパスにリダイレクトを行う
                 // pushをすると、新しいページの推移が入るので指定したURL情報が入る。
