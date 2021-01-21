@@ -1,4 +1,7 @@
 import firebase from 'firebase'//カリキュラムの通りのコードだと古いらしい
+import 'firebase/auth'
+import 'firebase/firestore'
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDZ_o-tb0rZoaZvhpQzX2hI17PAT5lsi14",
