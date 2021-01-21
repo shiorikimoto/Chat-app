@@ -40,8 +40,6 @@ const Room = ({ history }) => {
         <>
             <h1>Room</h1>
             <ul>
-                {/* messagesを取得する前に出力されることを抑止する。 */}
-                {/* messagesのmapを一つづつ分解する。。 */}
                 {messages && messages.map(messages =>
                     <li> {messages.context} </li>
                 )}
@@ -55,7 +53,7 @@ const Room = ({ history }) => {
                 />
                 <button type='submit'>submit</button>
             </form>
-            {/* ログアウト機能追加 */}
+
             <button onClick={() => firebase.auth().signOut()}>Logout</button>
         </>
     )

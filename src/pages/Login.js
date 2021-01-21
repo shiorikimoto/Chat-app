@@ -21,17 +21,11 @@ const Login = ({ history }) => {//Loginは関数の名前　history引数　
         e.preventDefault()//デフォルトの動きを抑制する
         firebase.auth().signInWithEmailAndPassword(email, password)// firebaseのログイン機能,メソッド
             .then(() => {
-                // pushメソッドを使用することで、引数に指定したパスにリダイレクトを行う
-                // pushをすると、新しいページの推移が入るので指定したURL情報が入る。
-                history.push("/")
-            }).catch(err => {
-                // エラー時の処理
-                // Formのemail,passwordの入力を削除
+                history.push("/")// pushメソッド
+            }).catch(err => {// エラー時の処理
                 setEmail('')
                 setPassword('')
-                // ログインエラーの時のポップアップ
-                alert('Wrong password.')
-                console.log(err)
+                alert('パスワードが違います')
             })
     }
 
@@ -47,8 +41,6 @@ const Login = ({ history }) => {//Loginは関数の名前　history引数　
                         name='email'
                         placeholder='Email'
                         value={email}
-                        //  入力された時に、state変数にセット   
-                        //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
                         onChange={e => setEmail(e.target.value)}
                     />
                 </div>
