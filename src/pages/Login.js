@@ -19,7 +19,7 @@ const Login = ({ history }) => {//Loginは関数の名前　history引数　
 
     const handleSubmit = (e) => {
         e.preventDefault()//デフォルトの動きを抑制する
-        firebase.auth().signInWithEmailAndPassword(email, password)// firebaseのログイン機能
+        firebase.auth().signInWithEmailAndPassword(email, password)// firebaseのログイン機能,メソッド
             .then(() => {
                 // pushメソッドを使用することで、引数に指定したパスにリダイレクトを行う
                 // pushをすると、新しいページの推移が入るので指定したURL情報が入る。
