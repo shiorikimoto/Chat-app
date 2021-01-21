@@ -22,18 +22,18 @@ const Room = ({ history }) => {
     }, [])
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         firebase.firestore().collection("messages").add({
             name: user.email,
             context: value,
             timestamp: new Date()
         }).then(function (docRef) {
-            setValue('');
-            console.log("Document written with ID: ", docRef.id);
+            setValue('')
+            console.log("Document written with ID: ", docRef.id)
         }).catch(function (error) {
-            setValue('');
-            console.error("Error adding document: ", error);
-        });
+            setValue('')
+            console.error("Error adding document: ", error)
+        })
     }
 
     return (
