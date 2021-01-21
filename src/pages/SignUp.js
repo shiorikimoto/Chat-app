@@ -27,8 +27,7 @@ const Signup = ({ history }) => {
                 // Formのemail,passwordの入力を削除
                 setEmail('');
                 setPassword('');
-                // 作成失敗の時のポップアップ
-                alert('Wrong .');
+                alert('Wrong .');// 作成失敗の時のポップアップ
                 console.log(err)
             })
     }

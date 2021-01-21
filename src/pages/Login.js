@@ -1,44 +1,39 @@
 import React, { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
-//import 'firebase/auth'//../config/firebase.jsから変更
+//import 'firebase/auth'//../firebase.jsから変更?
 import firebase from '../firebase.js'
 import { AuthContext } from '../AuthService'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-// history関数を引数とするLoginという関数を宣言している
-// history関数は全てのページの推移が入っている。
-// pushをすると、新しいページの推移が入るので新しいページのURL情報が入る。
-const Login = ({ history }) => {
-    // email という名前の state 変数を宣言、初期値 '' をセット
-    const [email, setEmail] = useState('');
-    // password という名前の state 変数を宣言、初期値 '' をセット
-    const [password, setPassword] = useState('');
 
-    // ユーザーのログイン情報がある場合はRoomにリダイレクト
+const Login = ({ history }) => {//Loginは関数の名前　history引数　
+    //history関数：全ページの推移がはいる　
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    //email・password:名前（state変数の）　　useState('')＝初期値空欄
+
     const user = useContext(AuthContext)
     if (user) {
-        return <Redirect to="/" />;
-    }
+        return <Redirect to="/" />
+    }//ログイン情報があったらRoomに入る
 
     const handleSubmit = (e) => {
-        // デフォルトの動きを抑制 
-        e.preventDefault();
-        // firebaseの機能を使用したログイン機能
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        e.preventDefault()//デフォルトの動きを抑制する
+        firebase.auth().signInWithEmailAndPassword(email, password)// firebaseのログイン機能
             .then(() => {
                 // pushメソッドを使用することで、引数に指定したパスにリダイレクトを行う
                 // pushをすると、新しいページの推移が入るので指定したURL情報が入る。
-                history.push("/");
+                history.push("/")
             }).catch(err => {
                 // エラー時の処理
                 // Formのemail,passwordの入力を削除
-                setEmail('');
-                setPassword('');
+                setEmail('')
+                setPassword('')
                 // ログインエラーの時のポップアップ
-                alert('Wrong password.');
-                console.log(err);
-            });
-    };
+                alert('Wrong password.')
+                console.log(err)
+            })
+    }
 
     return (
         <>
@@ -48,10 +43,8 @@ const Login = ({ history }) => {
                     <label htmlFor='email'>E-mail</label>
                     <input
                         type='email'
-                        // getElementByIdで取得するID
                         id='email'
                         name='email'
-                        // 初期値'Email'を入れる
                         placeholder='Email'
                         value={email}
                         //  入力された時に、state変数にセット   
@@ -62,15 +55,11 @@ const Login = ({ history }) => {
                 <div>
                     <label htmlFor='password'>Password</label>
                     <input
-                        type='password'
-                        // getElementByIdで取得するID  
+                        type='password' 
                         id='password'
-                        name='password'
-                        // 初期値'password'を入れる  
+                        name='password'  
                         placeholder='password'
-                        value={password}
-                        //  入力された時に、state変数にセット   
-                        //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント  
+                        value={password} 
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>

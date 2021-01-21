@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import firebase from '../firebase.js'
-//import 'firebase/auth'//import firebase from '../config/firebase.js'から変更
+//import 'firebase/auth'//import firebase from '../firebase.js'から変更
 import { AuthContext } from '../AuthService'
 
 const Room = ({ history }) => {
@@ -8,19 +8,17 @@ const Room = ({ history }) => {
     const [value, setValue] = useState('')
     const user = useContext(AuthContext)
 
-    // snapshotイベントは、対象のコレクション(今回はmessages)に変更があるたびに発生する
     useEffect(() => {
         firebase.firestore().collection('messages').orderBy('timestamp', 'desc')
             .onSnapshot((snapshot) => {
-                // map() メソッドは、与えられた関数を配列のすべての要素に対して呼び出し
-                // その結果からなる新しい配列を生成します
+                //snapshotイベント
+                //('messages')が変わるたびにおこる
                 const messages = snapshot.docs.map(doc => {
                     return doc.data()
                 })
-                // 内部データ確かめよう
-                console.log(messages);
+
                 setMessages(messages);
-            });
+            })
     }, [])
 
     const handleSubmit = (e) => {
@@ -52,9 +50,8 @@ const Room = ({ history }) => {
                 <input
                     placeholder='message'
                     value={value}
-                    //  入力された時に、state変数にセット
-                    //  ※onchangeは入力欄や選択肢が変更された時に発生するイベント
-                    onChange={e => setValue(e.target.value)}
+                    onChange={e => setValue(e.target.value)}// 入力された時にstate変数に入る
+                    //onChange
                 />
                 <button type='submit'>submit</button>
             </form>
